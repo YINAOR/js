@@ -127,7 +127,7 @@
 }())
 
 // 导航
-function navCreate(navArr = ["blog"]) {
+function navCreate(navArr = ["home","blog"]) {
 	navArr.forEach((nav) => {
 		const spanEl = jQuery("<span>", {
 			"class": "icon icon-lg icon-" + nav
@@ -137,7 +137,7 @@ function navCreate(navArr = ["blog"]) {
 			"href": "javascript:;",
 			"class": "waves-effect waves-circle waves-light",
 			"click": function () {
-				window.location = location.origin + "/" + nav
+				window.location = location.origin + "/" + (nav === "home" ? "" : nav)
 			}
 		}).append(spanEl).appendTo(".post-card");
 	})
