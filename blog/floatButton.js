@@ -127,7 +127,12 @@
 }())
 
 // 导航
-function navCreate(navArr = ["home","blog"]) {
+function navCreate(navArr = ["home","blog","music","album","letter"], autoExclude = true) {
+	let bottom = 30
+	if(autoExclude){
+		const pathname = location.pathname.match(/\w+/)[0]
+		navArr = navArr.filter(nav => nav != pathname)
+	}
 	navArr.forEach((nav) => {
 		const spanEl = jQuery("<span>", {
 			"class": "icon icon-lg icon-" + nav
@@ -140,5 +145,7 @@ function navCreate(navArr = ["home","blog"]) {
 				window.location = location.origin + "/" + (nav === "home" ? "" : nav)
 			}
 		}).append(spanEl).appendTo(".post-card");
+		jQuery("#"+nav).css("bottom", bottom)
+		bottom += 70
 	})
 }
